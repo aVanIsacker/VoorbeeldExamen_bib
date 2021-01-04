@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="VoorbeeldExamen_bib.Views.UitleningView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:VoorbeeldExamen_bib.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <GroupBox>
+        <Grid Margin="4,4,-2,4">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="6"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>        <!--0-->
+                <RowDefinition Height="Auto"/>      <!--1-->
+                <RowDefinition Height="30"/>        <!--2-->
+                <RowDefinition Height="Auto"/>      <!--3-->
+                <RowDefinition Height="Auto"/>        <!--4-->
+                <RowDefinition Height="Auto"/>      <!--5-->
+                <RowDefinition Height="Auto"/>      <!--6-->
+                <RowDefinition Height="Auto"/>      <!--7-->
+                <RowDefinition Height="Auto"/>      <!--8-->
+                <RowDefinition Height="Auto"/>      <!--9-->
+                <RowDefinition Height="Auto"/>        <!--10-->
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--UITLENINGSNR-->
+            <Label Grid.Row="0" Content="UitleningsNr:" HorizontalAlignment="Left"/>
+            <TextBox Grid.Row="0" Text="{Binding SelectedUitlening.UitleningsNr}" Grid.Column="2" Margin="5" Width="350" HorizontalAlignment="Left" />
+
+            <!--LIDNR-->
+            <Label Grid.Row="1" Content="Naam Lid" HorizontalAlignment="Left"/>
+            <TextBox Grid.Row="1" Text="{Binding SelectedUitlening.Contact}" Grid.Column="2" Margin="5" Width="350" HorizontalAlignment="Left"/>
+
+            <!--UITLENINGSDATUM-->
+            <Label Grid.Row="2" Content="UitleningsDatum" HorizontalAlignment="Left"/>
+            <TextBox Grid.Row="2" Text="{Binding SelectedUitlening.UitleningsDatum}" Grid.Column="2" Margin="5" Width="350" HorizontalAlignment="Left"/>
+
+            <!--VERVALDATUM-->
+            <Label Grid.Row="3" Content="VervalDatum" HorizontalAlignment="Left"/>
+            <TextBox Grid.Row="3" Text="{Binding SelectedUitlening.VervalDatum}" Grid.Column="2" Margin="5" Width="350" HorizontalAlignment="Left"/>
+
+            <!--UITGELEENDE BOEKEN-->
+            <Label Grid.Row="4" Content="Uitgeleende Boeken" HorizontalAlignment="Left"/>
+
+            <DataGrid Grid.Row="4" Grid.Column="2" AutoGenerateColumns="true" ItemsSource="{Binding SelectedUitlening}" SelectedItem="{Binding UitgeleendeBoeken}" />
+            <!--<TextBox Grid.Row="4" Text="{Binding SelectedUitlening.UitgeleendeBoeken}" Grid.Column="2" Margin="5" Width="350" HorizontalAlignment="Left"/>-->
+
+            <!--BUTTONS; ADD, DELETE, EDIT -->
+            <StackPanel  Orientation="Horizontal" Grid.Row="8" Grid.Column="2" HorizontalAlignment="Right" Margin="10">
+                <Button Background="Transparent" BorderThickness="0" Margin="5"  Command="{Binding AddUitleningCommand}">
+                    <Image Source="/Views/plus.png" Height="25" Width="30"/>
+                </Button>
+                <Button Background="Transparent" BorderThickness="0" Margin="3"  Command="{Binding DeleteUitleningCommand}">
+                    <Image Source="/Views/delete.png" Height="25" Width="30"/>
+                </Button>
+                <Button Background="Transparent" BorderThickness="0" Margin="5" Command="{Binding EditUitleningCommand}">
+                    <Image Source="/Views/edit.png" Height="25" Width="30"/>
+                </Button>
+            </StackPanel>
+
+            <DataGrid Grid.Row="10" Grid.Column="2"  AutoGenerateColumns="true" ItemsSource="{Binding Uitleningen}" SelectedItem="{Binding SelectedUitlening}" />
+          
+
+        </Grid>
+    </GroupBox>
+</UserControl>
