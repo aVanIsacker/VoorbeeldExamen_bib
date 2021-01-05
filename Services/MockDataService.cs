@@ -83,11 +83,11 @@ namespace VoorbeeldExamen_boeken.Services
         private void InitUitLeningen()
         {
             _uitleningen = new List<Uitlening>() {
-                 new Uitlening(){ UitleningsNr=1,Contact = _leden[0],UitleningsDatum = DateTime.Now, VervalDatum = DateTime.Now.AddDays(21), LeesBoek = _boeken[0] },
-                 new Uitlening(){ UitleningsNr=2,Contact = _leden[1],UitleningsDatum = DateTime.Now, VervalDatum = DateTime.Now.AddDays(21), LeesBoek = _boeken[2] },
-                 new Uitlening(){ UitleningsNr=3,Contact = _leden[2],UitleningsDatum = DateTime.Now, VervalDatum = DateTime.Now.AddDays(21), LeesBoek = _boeken[1] },
-                 new Uitlening(){ UitleningsNr=4,Contact = _leden[1],UitleningsDatum = DateTime.Now, VervalDatum = DateTime.Now.AddDays(21), LeesBoek = _boeken[3] },
-                 new Uitlening(){ UitleningsNr=5,Contact = _leden[0],UitleningsDatum = DateTime.Now, VervalDatum = DateTime.Now.AddDays(21), LeesBoek = _boeken[4] },
+                 new Uitlening(){ UitleningsNr=1,Lid = _leden[0],UitleningsDatum = DateTime.Now, VervalDatum = DateTime.Now.AddDays(21), LeesBoek = _boeken[0] },
+                 new Uitlening(){ UitleningsNr=2,Lid = _leden[1],UitleningsDatum = DateTime.Now, VervalDatum = DateTime.Now.AddDays(21), LeesBoek = _boeken[2] },
+                 new Uitlening(){ UitleningsNr=3,Lid = _leden[2],UitleningsDatum = DateTime.Now, VervalDatum = DateTime.Now.AddDays(21), LeesBoek = _boeken[1] },
+                 new Uitlening(){ UitleningsNr=4,Lid = _leden[1],UitleningsDatum = DateTime.Now, VervalDatum = DateTime.Now.AddDays(21), LeesBoek = _boeken[3] },
+                 new Uitlening(){ UitleningsNr=5,Lid = _leden[0],UitleningsDatum = DateTime.Now, VervalDatum = DateTime.Now.AddDays(21), LeesBoek = _boeken[4] },
 
             };
         }

@@ -7,7 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <GroupBox>
-        <Grid Margin="4,4,-2,4">
+        
+
+            <Grid Margin="20">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -18,17 +20,28 @@
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="20"/>        <!--0-->
-                <RowDefinition Height="40"/>      <!--1-->
-                <RowDefinition Height="5"/>        <!--2-->
-                <RowDefinition Height="40"/>      <!--3-->
-                <RowDefinition Height="5"/>        <!--4-->
-                <RowDefinition Height="40"/>      <!--5-->
-                <RowDefinition Height="5"/>      <!--6-->
-                <RowDefinition Height="40"/>      <!--7-->
-                <RowDefinition Height="5"/>      <!--8-->
-                <RowDefinition Height="Auto"/>      <!--9-->
-                <RowDefinition Height="5"/>        <!--10-->
+                <RowDefinition Height="20"/>
+                <!--0-->
+                <RowDefinition Height="40"/>
+                <!--1-->
+                <RowDefinition Height="5"/>
+                <!--2-->
+                <RowDefinition Height="40"/>
+                <!--3-->
+                <RowDefinition Height="5"/>
+                <!--4-->
+                <RowDefinition Height="40"/>
+                <!--5-->
+                <RowDefinition Height="5"/>
+                <!--6-->
+                <RowDefinition Height="40"/>
+                <!--7-->
+                <RowDefinition Height="5"/>
+                <!--8-->
+                <RowDefinition Height="Auto"/>
+                <!--9-->
+                <RowDefinition Height="5"/>
+                <!--10-->
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
@@ -40,21 +53,40 @@
             <!--NAAM LID-->
             <Label Grid.Row="3" Content="Naam Lid" HorizontalAlignment="Left"/>
             <!--<TextBox Grid.Row="3" Text="{Binding SelectedUitlening.Contact}" Grid.Column="2" Margin="5" Width="350" HorizontalAlignment="Left"/>-->
-            <ComboBox Grid.Row="3" ItemsSource="{Binding Leden}" SelectedItem="{Binding SelectedUitlening.Contact}" Grid.Column="2" Margin="5" Width="350" HorizontalAlignment="Left"/>
+            <TextBox Grid.Row="3" Text="{Binding SelectedUitlening.Lid}"  Grid.Column="2" Margin="5" Width="350" HorizontalAlignment="Left" />
 
             <!--UITLENINGSDATUM-->
             <Label Grid.Row="5" Content="UitleningsDatum" HorizontalAlignment="Left"/>
-            <DatePicker x:Name="UitleningsDatum" Grid.Row="5" Grid.Column="2" SelectedDate="{Binding SelectedUitlening.UitleningsDatum, StringFormat=d}" Margin="5"/>
+            <DatePicker x:Name="UitleningsDatum" Grid.Row="5" Grid.Column="2" SelectedDate="{Binding SelectedUitlening.UitleningsDatum, StringFormat=d}" Margin="5" Width="350" HorizontalAlignment="Left" />
             <!--<TextBox Grid.Row="2" Text="{Binding SelectedUitlening.UitleningsDatum}" Grid.Column="2" Margin="5" Width="350" HorizontalAlignment="Left"/>-->
 
             <!--VERVALDATUM-->
+            <!--deze klopt nog niet denk ik-->
             <Label Grid.Row="7" Content="VervalDatum" HorizontalAlignment="Left"/>
-            <TextBox Grid.Row="7" Text="{Binding SelectedUitlening.VervalDatum, StringFormat=d}" Grid.Column="2" Margin="5" Width="350" HorizontalAlignment="Left"/>
+            <TextBox Grid.Row="7" Text="{Binding SelectedUitlening.VervalDatum, StringFormat='dd/MM/yyyy'}" Grid.Column="2" Margin="5" Width="350" HorizontalAlignment="Left"/>
 
             <!--UITGELEENDE BOEKEN VAN GESELECTEERDE KLANT-->
             <Label Grid.Row="9" Content="Uitgeleende Boeken" HorizontalAlignment="Left"/>
-            <DataGrid Grid.Row="9" Grid.Column="2" AutoGenerateColumns="true" ItemsSource="{Binding Leden}" SelectedItem="{Binding SelectedUitlening}" Margin="5" />
-        
+            <!--<Bind al aan boeken maar nog niet duidelijk van wie, BoekNr klopt ook nog niet/>-->
+            <!--<DataGrid Grid.Row="9" Grid.Column="2" MaxWidth="500" AutoGenerateColumns="true" ItemsSource="{Binding SelectedLid.GeleendeBoeken}" IsReadOnly="True" MinHeight="100" Margin="5"/>-->
+
+            <DataGrid ItemsSource="{Binding SelectedLid.GeleendeBoeken}" SelectedItem="{Binding SelectedUitlening}"  
+                          CanUserSortColumns="True" Margin="5"
+                                          AlternatingRowBackground="WhiteSmoke" Foreground="Black" Background="White" 
+                          IsReadOnly="True" Grid.Row="9" Grid.Column="2" MaxWidth="500" MinHeight="100" Padding="5"
+                          AutoGenerateColumns="False" >
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding BoekNr}" Header="BoekNummer" />
+                    <DataGridTextColumn Binding="{Binding Titel}" Header="Titel" />
+                    <DataGridTextColumn Binding="{Binding Auteur}" Header="Auteur" />
+                    <DataGridTextColumn Binding="{Binding Categorie}" Header="Categorie" />
+                    
+                </DataGrid.Columns>
+            </DataGrid>
+
+
+
 
             <!--BUTTONS; ADD, DELETE, EDIT -->
             <StackPanel  Orientation="Horizontal" Grid.Row="11" Grid.Column="4" HorizontalAlignment="Right" Margin="10">
@@ -69,10 +101,55 @@
                 </Button>
             </StackPanel>
 
-            <!--Datagrid uitleningen-->
-            <DataGrid Grid.Row="1" Grid.RowSpan="9" Grid.Column="9"  AutoGenerateColumns="true" ItemsSource="{Binding Uitleningen}" SelectedItem="{Binding SelectedUitlening}" />
-          
+
+            <!--TEST BINDING LEDEN-->
+            <!--<Label Grid.Row="11" Content="Test Boeken" HorizontalAlignment="Left"/>
+            <DataGrid Grid.Row="11" Grid.Column="2" AutoGenerateColumns="true" ItemsSource="{Binding Leden}" SelectedItem="{Binding Uitlening}" Margin="5" />-->
+
+
+            <!--DATAGRID ALLE UITLENINGEN RECHTS-->
+            <Label Grid.Row="1"  Grid.Column="9"  Content="Lijst Uitleningen" Margin="30,0,0,0" HorizontalAlignment="Left"/>
+            <!--<DataGrid Grid.Row="3" Grid.Column="9" Grid.RowSpan="7"  Margin="30,0,0,0" AutoGenerateColumns="true" ItemsSource="{Binding Uitleningen}" SelectedItem="{Binding SelectedUitlening}" />-->
+
+                <DataGrid ItemsSource="{Binding Uitleningen}" SelectedItem="{Binding SelectedUitlening}"  
+                          CanUserSortColumns="True" Margin="30,0,0,0"
+                                          AlternatingRowBackground="WhiteSmoke" Foreground="Black" Background="White" 
+                          IsReadOnly="True" Grid.Row="3" Grid.Column="9" Grid.RowSpan="7"  Padding="5"
+                          AutoGenerateColumns="False" >
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding UitleningsNr}" Header="Nummer" />
+
+                        <DataGridTemplateColumn Header="UitleningsDatum">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding UitleningsDatum,StringFormat='dd/MM/yyyy'}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        
+                       
+                    <DataGridTextColumn Binding="{Binding VervalDatum, StringFormat='dd/MM/yyyy'}" Header="VervalDatum" />
+                        <DataGridTextColumn Binding="{Binding Lid.Familienaam}" Header="Familienaam Lid" />
+                        <DataGridTextColumn Binding="{Binding Lid.Voornaam}" Header="Voornaam Lid" />
+                        
+                        <!--hier zoeken hoe ik het aantal geleende boeken kan weergeven-->
+                        <DataGridTextColumn Binding="{Binding Boek}" Header="Aantal Boeken" />
+                    </DataGrid.Columns>
+            </DataGrid>
+
+
+
+
+
+
+
+
+
+
 
         </Grid>
+        
     </GroupBox>
 </UserControl>

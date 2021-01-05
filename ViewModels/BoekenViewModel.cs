@@ -18,32 +18,43 @@ namespace VoorbeeldExamen_boeken.ViewModel
     {
         private IDataService _dataService;
         private IDialogService _dialogService;
+
         private ObservableCollection<Boek> _boeken;
-        private Boek _selectedBoek;
+
         public ObservableCollection<Boek> Boeken
         {
             get { return _boeken; }
             set
             {
-               
-                OnPropertyChanged(ref _boeken,value);
+
+                OnPropertyChanged(ref _boeken, value);
             }
         }
+
+
+        private Boek _selectedBoek;
+
+        public Boek SelectedBoek
+        {
+            get => _selectedBoek;
+            set
+            {
+                OnPropertyChanged(ref _selectedBoek, value);
+            }
+        }
+
+        
+
+
 
         public BoekenViewModel(IDataService dataservice, IDialogService dialogService)
         {
             _dataService = dataservice;
             _dialogService = dialogService;
-            _boeken = new ObservableCollection<Boek>(_dataService.GeefAlleBoeken());
+            Boeken = new ObservableCollection<Boek>(_dataService.GeefAlleBoeken());
             _selectedBoek = _boeken[0];
         }
-        public Boek SelectedBoek
-        {
-            get => _selectedBoek;
-            set {
-                OnPropertyChanged(ref _selectedBoek, value);
-            }
-        }
+        
       
     }
 }

@@ -13,7 +13,7 @@
         <viewmodels:MainViewModel/>
     </Window.DataContext>
 
-    <Grid  >
+    <Grid Margin="40" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
           
@@ -23,19 +23,19 @@
         </Grid.RowDefinitions>
         <TabControl>
 
-            <TabItem Header="Boek">
+            <TabItem Header="Boek" MinWidth="50">
                 <StackPanel  Margin="10"  Grid.Column="0">
                     <views:BoekenDataGridView DataContext="{Binding BoekenVM}"/>
                 </StackPanel>
             </TabItem>
-            <TabItem Header="Lid">
+            <TabItem Header="Lid" MinWidth="50">
                 <StackPanel  Margin="10"  Grid.Column="0">
                     <views1:LedenView DataContext="{Binding LedenVM}"/>
                 </StackPanel>
 
                
             </TabItem>
-            <TabItem Header="Uitlening">
+            <TabItem Header="Uitlening" MinWidth="50">
                 <StackPanel  Margin="10"  Grid.Column="0">
                     <views1:UitleningView DataContext="{Binding UitleningVM}"/>
                 </StackPanel>

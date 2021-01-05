@@ -27,6 +27,8 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             
@@ -61,12 +63,17 @@
                 </Button>
             </StackPanel>
 
+            <!--Ledenlijst (binding Leden) waarvan het geselecteerd lid (binding selectedlid in de details boven verschijnen-->
+            <Label Grid.Row="6" Content="LedenLijst" HorizontalAlignment="Left"/>
             <DataGrid Grid.Row="7" AutoGenerateColumns="true" ItemsSource="{Binding Leden}" SelectedItem="{Binding SelectedLid}" />
            
             <!--uitgeleende boeken, per geselecteerd lid-->
             <Label Grid.Row="8" Content="Uitgeleende Boeken" HorizontalAlignment="Left"/>
-            <DataGrid Grid.Row="9" AutoGenerateColumns="true" ItemsSource="{Binding SelectedLid}" SelectedItem="{Binding UitgeleendeBoeken}" />
-
+            <!--<DataGrid Grid.Row="9" AutoGenerateColumns="true" ItemsSource="{Binding SelectedLid.GeleendeBoeken}" MinHeight="100"  />-->
+            
+            <!--Werkt, maar als ik het selecteer, werk bovenste niet meer-->
+            
+            
         </Grid>
     </GroupBox>
 </UserControl>

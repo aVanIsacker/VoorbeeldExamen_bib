@@ -13,9 +13,16 @@ namespace VoorbeeldExamen_boeken.ViewModels
     public class LedenViewModel : ObservableObject
     {
         private IDataService _dataService;
-        private ObservableCollection<Lid> _leden;
-        private Lid _selectedLid;
 
+        private ObservableCollection<Lid> _leden;
+        public ObservableCollection<Lid> Leden
+        {
+            get { return _leden; }
+            set { OnPropertyChanged(ref _leden, value); }
+        }
+
+
+        private Lid _selectedLid;
         public Lid SelectedLid
         {
             get { return _selectedLid; }
@@ -23,12 +30,8 @@ namespace VoorbeeldExamen_boeken.ViewModels
         }
 
 
-        //using observable collection
-        public ObservableCollection<Lid> Leden
-        {
-            get { return _leden; }
-            set { OnPropertyChanged(ref _leden, value); }
-        }
+       
+        
 
         //using dataservice
         public LedenViewModel(IDataService dataService)
