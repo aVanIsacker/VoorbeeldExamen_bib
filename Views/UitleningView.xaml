@@ -13,49 +13,51 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="6"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="6"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>        <!--0-->
-                <RowDefinition Height="Auto"/>      <!--1-->
-                <RowDefinition Height="30"/>        <!--2-->
-                <RowDefinition Height="Auto"/>      <!--3-->
-                <RowDefinition Height="Auto"/>        <!--4-->
-                <RowDefinition Height="Auto"/>      <!--5-->
-                <RowDefinition Height="Auto"/>      <!--6-->
-                <RowDefinition Height="Auto"/>      <!--7-->
-                <RowDefinition Height="Auto"/>      <!--8-->
+                <RowDefinition Height="20"/>        <!--0-->
+                <RowDefinition Height="40"/>      <!--1-->
+                <RowDefinition Height="5"/>        <!--2-->
+                <RowDefinition Height="40"/>      <!--3-->
+                <RowDefinition Height="5"/>        <!--4-->
+                <RowDefinition Height="40"/>      <!--5-->
+                <RowDefinition Height="5"/>      <!--6-->
+                <RowDefinition Height="40"/>      <!--7-->
+                <RowDefinition Height="5"/>      <!--8-->
                 <RowDefinition Height="Auto"/>      <!--9-->
-                <RowDefinition Height="Auto"/>        <!--10-->
+                <RowDefinition Height="5"/>        <!--10-->
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <!--UITLENINGSNR-->
-            <Label Grid.Row="0" Content="UitleningsNr:" HorizontalAlignment="Left"/>
-            <TextBox Grid.Row="0" Text="{Binding SelectedUitlening.UitleningsNr}" Grid.Column="2" Margin="5" Width="350" HorizontalAlignment="Left" />
+            <Label Grid.Row="1" Content="UitleningsNr:" HorizontalAlignment="Left"/>
+            <TextBox Grid.Row="1" Text="{Binding SelectedUitlening.UitleningsNr}" Grid.Column="2" Margin="5" Width="350" HorizontalAlignment="Left" />
 
-            <!--LIDNR-->
-            <Label Grid.Row="1" Content="Naam Lid" HorizontalAlignment="Left"/>
-            <TextBox Grid.Row="1" Text="{Binding SelectedUitlening.Contact}" Grid.Column="2" Margin="5" Width="350" HorizontalAlignment="Left"/>
+            <!--NAAM LID-->
+            <Label Grid.Row="3" Content="Naam Lid" HorizontalAlignment="Left"/>
+            <!--<TextBox Grid.Row="3" Text="{Binding SelectedUitlening.Contact}" Grid.Column="2" Margin="5" Width="350" HorizontalAlignment="Left"/>-->
+            <ComboBox Grid.Row="3" ItemsSource="{Binding Leden}" SelectedItem="{Binding SelectedUitlening.Contact}" Grid.Column="2" Margin="5" Width="350" HorizontalAlignment="Left"/>
 
             <!--UITLENINGSDATUM-->
-            <Label Grid.Row="2" Content="UitleningsDatum" HorizontalAlignment="Left"/>
-            <TextBox Grid.Row="2" Text="{Binding SelectedUitlening.UitleningsDatum}" Grid.Column="2" Margin="5" Width="350" HorizontalAlignment="Left"/>
+            <Label Grid.Row="5" Content="UitleningsDatum" HorizontalAlignment="Left"/>
+            <DatePicker x:Name="UitleningsDatum" Grid.Row="5" Grid.Column="2" SelectedDate="{Binding SelectedUitlening.UitleningsDatum, StringFormat=d}" Margin="5"/>
+            <!--<TextBox Grid.Row="2" Text="{Binding SelectedUitlening.UitleningsDatum}" Grid.Column="2" Margin="5" Width="350" HorizontalAlignment="Left"/>-->
 
             <!--VERVALDATUM-->
-            <Label Grid.Row="3" Content="VervalDatum" HorizontalAlignment="Left"/>
-            <TextBox Grid.Row="3" Text="{Binding SelectedUitlening.VervalDatum}" Grid.Column="2" Margin="5" Width="350" HorizontalAlignment="Left"/>
+            <Label Grid.Row="7" Content="VervalDatum" HorizontalAlignment="Left"/>
+            <TextBox Grid.Row="7" Text="{Binding SelectedUitlening.VervalDatum, StringFormat=d}" Grid.Column="2" Margin="5" Width="350" HorizontalAlignment="Left"/>
 
-            <!--UITGELEENDE BOEKEN-->
-            <Label Grid.Row="4" Content="Uitgeleende Boeken" HorizontalAlignment="Left"/>
-
-            <DataGrid Grid.Row="4" Grid.Column="2" AutoGenerateColumns="true" ItemsSource="{Binding SelectedUitlening}" SelectedItem="{Binding UitgeleendeBoeken}" />
-            <!--<TextBox Grid.Row="4" Text="{Binding SelectedUitlening.UitgeleendeBoeken}" Grid.Column="2" Margin="5" Width="350" HorizontalAlignment="Left"/>-->
+            <!--UITGELEENDE BOEKEN VAN GESELECTEERDE KLANT-->
+            <Label Grid.Row="9" Content="Uitgeleende Boeken" HorizontalAlignment="Left"/>
+            <DataGrid Grid.Row="9" Grid.Column="2" AutoGenerateColumns="true" ItemsSource="{Binding Leden}" SelectedItem="{Binding SelectedUitlening}" Margin="5" />
+        
 
             <!--BUTTONS; ADD, DELETE, EDIT -->
-            <StackPanel  Orientation="Horizontal" Grid.Row="8" Grid.Column="2" HorizontalAlignment="Right" Margin="10">
+            <StackPanel  Orientation="Horizontal" Grid.Row="11" Grid.Column="4" HorizontalAlignment="Right" Margin="10">
                 <Button Background="Transparent" BorderThickness="0" Margin="5"  Command="{Binding AddUitleningCommand}">
                     <Image Source="/Views/plus.png" Height="25" Width="30"/>
                 </Button>
@@ -67,7 +69,8 @@
                 </Button>
             </StackPanel>
 
-            <DataGrid Grid.Row="10" Grid.Column="2"  AutoGenerateColumns="true" ItemsSource="{Binding Uitleningen}" SelectedItem="{Binding SelectedUitlening}" />
+            <!--Datagrid uitleningen-->
+            <DataGrid Grid.Row="1" Grid.RowSpan="9" Grid.Column="9"  AutoGenerateColumns="true" ItemsSource="{Binding Uitleningen}" SelectedItem="{Binding SelectedUitlening}" />
           
 
         </Grid>

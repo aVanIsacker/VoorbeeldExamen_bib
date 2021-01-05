@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using VoorbeeldExamen_boeken.Models;
 using VoorbeeldExamen_boeken.Utilities;
 
 namespace VoorbeeldExamen_bib.Models
@@ -12,6 +13,7 @@ namespace VoorbeeldExamen_bib.Models
         private string _familienaam;
         private string _email;
 
+        private List<Boek> _geleendeBoeken;
 
         //getters en setters
         public int LidNr
@@ -43,8 +45,16 @@ namespace VoorbeeldExamen_bib.Models
                 OnPropertyChanged(ref _email, value);
             }
         }
-        
-        
+
+        public Lid()
+        {
+            _geleendeBoeken = new List<Boek>();
+        }
+        public List<Boek> GeleendeBoeken
+        {
+            get { return _geleendeBoeken; }
+            set { OnPropertyChanged(ref _geleendeBoeken, value); }
+        }
 
     }
 }

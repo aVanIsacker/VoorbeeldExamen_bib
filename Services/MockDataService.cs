@@ -18,12 +18,13 @@ namespace VoorbeeldExamen_boeken.Services
 
         //private IList<Uitlening> _uitleningen;
         #endregion
+
+     
+
         public MockDataService()
         {
             InitLists();
         }
-
-        
 
         private void InitLists()
         {
@@ -54,6 +55,7 @@ namespace VoorbeeldExamen_boeken.Services
 
         }
 
+        
 
         private void InitLeden()
         {
@@ -63,16 +65,29 @@ namespace VoorbeeldExamen_boeken.Services
                  new Lid(){ LidNr=2,Voornaam="Piet",Familienaam="Pieters", Email="pp@hotmail.com"},
                  new Lid(){ LidNr=3,Voornaam="Kris",Familienaam="Korneslis", Email="kk@hotmail.com" }
             };
+
+            _leden[0].GeleendeBoeken.Add(_boeken[0]);
+            _leden[0].GeleendeBoeken.Add(_boeken[1]);
+            _leden[0].GeleendeBoeken.Add(_boeken[2]);
+
+            _leden[1].GeleendeBoeken.Add(_boeken[0]);
+            _leden[1].GeleendeBoeken.Add(_boeken[1]);
+            _leden[1].GeleendeBoeken.Add(_boeken[2]);
+
+            _leden[1].GeleendeBoeken.Add(_boeken[0]);
+            _leden[1].GeleendeBoeken.Add(_boeken[1]);
+            _leden[1].GeleendeBoeken.Add(_boeken[2]);
+
         }
 
         private void InitUitLeningen()
         {
             _uitleningen = new List<Uitlening>() {
-                 new Uitlening(){ UitleningsNr=1,Contact = _leden[0],UitleningsDatum = DateTime.Now },
-                 new Uitlening(){ UitleningsNr=2,Contact = _leden[1],UitleningsDatum = DateTime.Now },
-                 new Uitlening(){ UitleningsNr=3,Contact = _leden[2],UitleningsDatum = DateTime.Now },
-                 new Uitlening(){ UitleningsNr=4,Contact = _leden[1],UitleningsDatum = DateTime.Now },
-                 new Uitlening(){ UitleningsNr=5,Contact = _leden[0],UitleningsDatum = DateTime.Now },
+                 new Uitlening(){ UitleningsNr=1,Contact = _leden[0],UitleningsDatum = DateTime.Now, VervalDatum = DateTime.Now.AddDays(21), LeesBoek = _boeken[0] },
+                 new Uitlening(){ UitleningsNr=2,Contact = _leden[1],UitleningsDatum = DateTime.Now, VervalDatum = DateTime.Now.AddDays(21), LeesBoek = _boeken[2] },
+                 new Uitlening(){ UitleningsNr=3,Contact = _leden[2],UitleningsDatum = DateTime.Now, VervalDatum = DateTime.Now.AddDays(21), LeesBoek = _boeken[1] },
+                 new Uitlening(){ UitleningsNr=4,Contact = _leden[1],UitleningsDatum = DateTime.Now, VervalDatum = DateTime.Now.AddDays(21), LeesBoek = _boeken[3] },
+                 new Uitlening(){ UitleningsNr=5,Contact = _leden[0],UitleningsDatum = DateTime.Now, VervalDatum = DateTime.Now.AddDays(21), LeesBoek = _boeken[4] },
 
             };
         }
@@ -144,5 +159,28 @@ namespace VoorbeeldExamen_boeken.Services
                 _uitleningen[index] = selectedUitlening;
             }
         }
+
+
+
+        ////geef uitlening voor Lid en wijzigingen
+        //public IList<Lid> GeefGeleendeBoekenVoorLid(Lid selectedLid)
+        //{
+        //    return (IList<Lid>)selectedLid.GeleendeBoeken;
+
+
+        //}
+
+        public IList<Lid> VoegBoekToeVoorLid(int KlantIndex, Boek boek)
+        {
+            _leden[KlantIndex].GeleendeBoeken.Add(boek);
+            return _leden;
+        }
+
+        public IList<Lid> VerwijderBoekVoorLid(int KlantIndex, Boek boek)
+        {
+            _leden[KlantIndex].GeleendeBoeken.Remove(boek);
+            return (IList<Lid>)_leden[KlantIndex].GeleendeBoeken;
+        }
+
     }
 }
